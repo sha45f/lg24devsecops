@@ -37,22 +37,22 @@ jobs:
         uses: coverallsapp/github-action@v2.3.0       
         with:
           github-token: ${{ github.token }} 
-          
-      - name: Pyre Action
-        uses: facebook/pyre-action@v0.0.2
+      # ✅ Pyre 직접 실행 + SARIF 저장
+      - name: Install and Run Pyre
+        run: |
+          pip install pyre-check
+          pyre --output-format=sarif --save-results-to=sarif.json || true
+
+      # ✅ SARIF 업로드
+      - name: Upload Pyre SARIF to GitHub
+        uses: github/codeql-action/upload-sarif@v3
         with:
-          # Path to the python source code you want to type check. If you want to type check the root of your repo, use './'. A .pyre_configuration file should exist here, if not, a default configuration will be used.
-          repo-directory: './'
-          requirements-path: './requirements.txt'
+          sarif_file: sarif.json
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4.6.2
         with:
           name: coverage
           path: coverage.xml
-      - name: Generate SARIF Summary
-        run: |
-          pip install sarif-cli
-          sarif summary results.sarif
 
 
        
