@@ -49,6 +49,11 @@ jobs:
         with:
           name: coverage
           path: coverage.xml
+      - name: Generate SARIF Summary
+        run: |
+          pip install sarif-cli
+          sarif summary results.sarif
+
 
        
      
