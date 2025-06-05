@@ -1,0 +1,4 @@
+{
+  "source_directories": ["owm"],
+  "search_path": ["owm"]
+}
