@@ -34,7 +34,7 @@ jobs:
             -Dsonar.tests=tests/
             -Dsonar.verbose=true
       - name: Coveralls
-        uses: coverallsapp/github-action@v2
+        uses: coverallsapp/github-action@v3
         with:
           github-token: ${{ github.token }} 
       - name: Pyre Action
