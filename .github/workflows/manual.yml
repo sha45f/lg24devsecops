@@ -23,7 +23,7 @@ jobs:
       - run: pip install -r requirements.txt
       - run: py.test --cov --cov-report=xml owm tests -vv
       - name: Analyze with SonarCloud
-        uses: sonarsource/sonarcloud-github-action@master
+        uses: sonarsource/sonarcloud-github-action@v2
         with:
           args: >
             -Dsonar.organization=sha45f 
