@@ -10,5 +10,10 @@ after_success:
   - coveralls
 addons:
   sonarcloud:
-    organization: sha45f
+    organization: "sha45f"
+    token:
+      secure: "77477950999f04bd133f933e4fe374cd1d4d4e8e" # encrypted value of your token
 
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - sonar-scanner
