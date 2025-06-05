@@ -29,7 +29,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           args: >
             -Dsonar.organization=sha45f 
-            -Dsonar.projectKey=jgennari-2023-devsecops-example 
+            -Dsonar.projectKey=sha45f_lg24devsecops 
             -Dsonar.sources=owm/
             -Dsonar.tests=tests/
             -Dsonar.verbose=true
