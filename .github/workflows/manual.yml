@@ -37,17 +37,16 @@ jobs:
         uses: coverallsapp/github-action@v2.3.0       
         with:
           github-token: ${{ github.token }} 
-      # ✅ Pyre 직접 실행 + SARIF 저장
-      - name: Install and Run Pyre
+      - name: Run Pyre and Save SARIF
         run: |
           pip install pyre-check
-          pyre --output-format=sarif --save-results-to=sarif.json || true
-
-      # ✅ SARIF 업로드
-      - name: Upload Pyre SARIF to GitHub
+          pyre --output-format=sarif --save-results-to=pyre.sarif || true
+      
+      - name: Upload SARIF to GitHub
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: sarif.json
+          sarif_file: pyre.sarif
+
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4.6.2
         with:
