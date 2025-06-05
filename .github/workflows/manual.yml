@@ -23,20 +23,18 @@ jobs:
       - run: pip install -r requirements.txt
       - run: py.test --cov --cov-report=xml owm tests -vv
       - name: Analyze with SonarCloud
-        uses: sonarsource/sonarcloud-github-action@v2
-        with:
+        uses: sonarsource/sonarcloud-github-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           args: >
             -Dsonar.organization=sha45f 
             -Dsonar.projectKey=sha45f_lg24devsecops 
             -Dsonar.sources=owm/
             -Dsonar.tests=tests/
             -Dsonar.verbose=true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Coveralls
-        uses: coverallsapp/github-action@v2.3.0
-        
+        uses: coverallsapp/github-action@v2.3.0        
         with:
           github-token: ${{ github.token }} 
       - name: Pyre Action
