@@ -40,7 +40,7 @@ jobs:
       - name: Run Pyre and Save SARIF
         run: |
           pip install pyre-check
-          pyre --output-format=sarif --save-results-to=pyre.sarif || true
+          pyre --output=sarif --save-results-to=pyre.sarif || true
       
       - name: Upload SARIF to GitHub
         uses: github/codeql-action/upload-sarif@v3
